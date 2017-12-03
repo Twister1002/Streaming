@@ -1,0 +1,26 @@
+{
+  "name": "streaming",
+  "version": "0.0.1",
+  "description": "Streaming overlay and integrations with other services",
+  "main": "gulpfile.js",
+  "author": "Twister1002",
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Twister1002/Streaming.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Twister1002/Streaming/issues"
+  },
+  "devDependencies": {
+    "gulp": "3.9.1",
+    "gulp-sass": "3.1.0",
+    "gulp-concat": "2.6.1",
+    "gulp-sourcemaps": "2.6.1",
+    "browser-sync": "2.18.13"
+  },
+  "homepage": "https://github.com/Twister1002/Streaming#readme"
+}
