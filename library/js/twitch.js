@@ -3,7 +3,8 @@ jQuery(document).ready(function() {
         function twitch(name) {
             this.name = name;
             this.clientId = "jccqzsee2ome0ua5opwxr6rjjjj8a3";
-            this.baseUri = "https://api.twitch.tv/kraken";
+            this.baseUri = "https://api.twitch.tv/";
+            this.apiVersion = "kraken";
             this.scopes = "channel_subscriptions channel_read channel_editor user_read";
             this.token = "token";
             this.userToken = "";
@@ -20,6 +21,8 @@ jQuery(document).ready(function() {
 
         twitch.prototype.LoadData = function() {
             this.GetRecentFollower();
+            this.GetRecentSubscriber();
+            this.GetRecentCheer();
         };
 
         twitch.prototype.Login = function() {
@@ -35,7 +38,16 @@ jQuery(document).ready(function() {
                 params += i+"="+e;
             });
             
-            window.location.href = this.baseUri+"/oauth2/authorize?"+params;
+            // var loginWindow = window.open(this.baseUri+this.apiVersion+"/oauth2/authorize?"+params, "_blank");
+            // $(loginWindow.location.href).on("change", function(e) {
+            //     console.log("In here!");
+            // });
+
+            $("iframe")
+            .attr("src", this.baseUri+this.apiVersion+"/oauth2/authorize?"+params )
+            .on("load", function(e) {
+                console.log(this);
+            })
         };
 
         twitch.prototype.LogUserIn = function() {
@@ -54,17 +66,12 @@ jQuery(document).ready(function() {
 
             // Now gather the information about the channel
             $.ajax({
-                "url": this.baseUri+"/channel",
+                "url": this.baseUri+this.apiVersion+"/channel",
                 "type": "get",
                 "crossDomain": true,
                 "async": false,
-                "headers": {
-                    "Accept": "application/vnd.twitchtv.v5+json",
-                    "Client-ID": this.clientId,
-                    "Authorization": "OAuth " + this.userToken
-                },
+                "headers": this.GetHeaders(),
                 "success": function(json) {
-                    console.log(json);
                     self.channelId = json._id;
                 },
                 "error": function(json) {
@@ -84,7 +91,7 @@ jQuery(document).ready(function() {
 
         twitch.prototype.GetRecentFollower = function () {
             $.ajax({
-                "url": this.baseUri+"/channels/"+this.channelId+"/follows",
+                "url": this.baseUri+this.apiVersion+"/channels/"+this.channelId+"/follows",
                 "type": "get", 
                 "data": {"limit": 1},
                 "dataType": "json",
@@ -95,6 +102,44 @@ jQuery(document).ready(function() {
                 },
                 "error": function(json) {
                     console.log(json);
+                }
+            });
+        };
+
+        twitch.prototype.GetRecentSubscriber = function() {
+            var self = this;
+            $.ajax({
+                "url": this.baseUri+this.apiVersion+"/channels/"+this.channelId+"/subscriptions",
+                "type": "get", 
+                "data": {"limit": 1},
+                "dataType": "json",
+                "crossDomain": true,
+                "headers": this.GetHeaders(),
+                "success": function(json) {
+                    console.log(json);
+                    $(".recents .sub dd").text(json.subscriptions[0].user.name);
+                },
+                "error": function(json) {
+                    console.log(json);
+                    $(".recents .sub dd").text(self.Error(json.status));
+                }
+            });
+        };
+
+        twitch.prototype.GetRecentCheer = function() {
+            $.ajax({
+                "url": this.baseUri+"bits/channels/"+this.channelId+"/events/recent",
+                "type": "get", 
+                "data": {},
+                "dataType": "json",
+                "crossDomain": true,
+                "headers": this.GetHeaders(),
+                "success": function(json) {
+                    $(".recents .bits dd").text(json.recent.username);
+                },
+                "error": function(json) {
+                    console.log(json);
+                    $(".recents .bits dd").text(self.Error(json.status));
                 }
             });
         };
@@ -112,6 +157,15 @@ jQuery(document).ready(function() {
             }
 
             return data;
+        };
+
+        twitch.prototype.Error = function(num) {
+            codes = {
+                422: "Subscriptions are not enabled",
+                404: "Not found"
+            }
+
+            return codes[num];
         };
 
         return twitch;
