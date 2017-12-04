@@ -41,13 +41,13 @@ body {
 
         .video {
             @include flex(0 0 calc(80% - 4em));
-            background-color: $blue;
+            // background-color: $blue;
             width: 80%;
         }
 
         .right {
             @include flex(0 0 20%);
-            background-color: $purple;
+            // background-color: $purple;
             display: inline-block;
             width: 20%;
         }
@@ -56,10 +56,10 @@ body {
     .recents {
         position: absolute;
         display: inline-block;
-        background-color: $green;
+        // background-color: $green;
+        color: $white;
         width: 100%;
         bottom: 0;
-        
         @include flexbox();
         
         > div {
@@ -77,11 +77,11 @@ body {
     
                 dt {
                     font-weight: bold;
-                    border-bottom: 2px solid $black;
+                    border-bottom: 2px solid $white;
                     text-transform: uppercase;
                 }
                 dd {
-                    border-top: 2px solid $black;
+                    border-top: 2px solid $white;
                 }
             }
         }

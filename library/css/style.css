@@ -34,7 +34,6 @@ body {
       -webkit-flex: 0 0 calc(80% - 4em);
       -ms-flex: 0 0 calc(80% - 4em);
       flex: 0 0 calc(80% - 4em);
-      background-color: #265184;
       width: 80%; }
     body .content .right {
       -webkit-box-flex: 0 0 20%;
@@ -42,13 +41,12 @@ body {
       -webkit-flex: 0 0 20%;
       -ms-flex: 0 0 20%;
       flex: 0 0 20%;
-      background-color: #A0246D;
       display: inline-block;
       width: 20%; }
   body .recents {
     position: absolute;
     display: inline-block;
-    background-color: #517800;
+    color: #FFFFFF;
     width: 100%;
     bottom: 0;
     display: -webkit-box;
@@ -71,7 +69,7 @@ body {
         font-size: 1.25em; }
       body .recents > div dl dt {
         font-weight: bold;
-        border-bottom: 2px solid #000000;
+        border-bottom: 2px solid #FFFFFF;
         text-transform: uppercase; }
       body .recents > div dl dd {
-        border-top: 2px solid #000000; }
+        border-top: 2px solid #FFFFFF; }
