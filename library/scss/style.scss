@@ -2,7 +2,7 @@
 @import "colors.scss";
 @import "mixins.scss";
 
-html {
+* {
     box-sizing: border-box;
     font-size: 16px;
     margin: 0;
@@ -20,6 +20,70 @@ dl {
 @import "header.scss";
 @import "footer.scss";
 
-.content {
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: $green;
 
+    .content {
+        position: relative;
+        height: 90vh;
+        width: 100vw;
+        @include flexbox();
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        > div {
+            height: 90%;
+            align-self: center;
+            margin: 0 1em;
+        }
+
+        .video {
+            @include flex(0 0 calc(80% - 4em));
+            background-color: $blue;
+            width: 80%;
+        }
+
+        .right {
+            @include flex(0 0 20%);
+            background-color: $purple;
+            display: inline-block;
+            width: 20%;
+        }
+    }
+
+    .recents {
+        position: absolute;
+        display: inline-block;
+        background-color: $green;
+        width: 100%;
+        bottom: 0;
+        
+        @include flexbox();
+        
+        > div {
+            font-size: 3em;
+            @include flex(1 1 auto);
+            margin: 0 .25em;
+
+            dl {
+                > * {
+                    display: block;
+                    padding: .5em;
+                    text-align: center;
+                    font-size: 1.25em;
+                }
+    
+                dt {
+                    font-weight: bold;
+                    border-bottom: 2px solid $black;
+                    text-transform: uppercase;
+                }
+                dd {
+                    border-top: 2px solid $black;
+                }
+            }
+        }
+    }
 }
