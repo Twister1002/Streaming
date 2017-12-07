@@ -56,12 +56,12 @@ body {
         justify-content: space-between;
         
         > div {
-            @include flex(0 0 33%);
+            @include flex(1 1 33%);
         }
 
         .social {
             > div {
-                font-size: 1.5em;
+                font-size: 1.25em;
                 align-self: center;
                 padding: .2em 0;
 
@@ -89,7 +89,7 @@ body {
         }
         
         .name {
-            font-size: 4em;
+            font-size: 2em;
             text-align: center;
         }
     }
