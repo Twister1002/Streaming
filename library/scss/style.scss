@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css?family=Courgette|Damion|IM+Fell+DW+Pica:400i|Lobster|Pacifico|Satisfy');
 @import "colors.scss";
 @import "mixins.scss";
 
@@ -23,7 +23,43 @@ dl {
 body {
     width: 100vw;
     height: 100vh;
-    background-color: $green;
+    background-color: $purple;
+    color: $white;
+
+    &[data-font="Lobster"] {
+        font-family: 'Lobster', cursive;
+    }
+    &[data-font="Pacifico"] {
+        font-family: 'Pacifico', cursive;
+    }
+    &[data-font="Satisfy"] {
+        font-family: 'Satisfy', cursive;
+    }
+    &[data-font="Courgette"] {
+        font-family: 'Courgette', cursive;
+    }
+    &[data-font="Damion"] {
+        font-family: 'Damion', cursive;
+    }
+    &[data-font="IM Fell DW Pica"] {
+        font-family: 'IM Fell DW Pica', serif;
+    }
+
+    iframe {
+        display: none;
+    }
+
+    .header {
+        background-color: $blue;
+        padding: 1em;
+        @include flexbox();
+        
+        .name {
+            @include flex(1 0 auto);
+            font-size: 4em;
+            text-align: center;
+        }
+    }
 
     .content {
         position: relative;
@@ -55,8 +91,6 @@ body {
 
     .recents {
         position: absolute;
-        // background-color: $green;
-        color: $white;
         width: 100%;
         bottom: 3.5em;
         @include flexbox();
