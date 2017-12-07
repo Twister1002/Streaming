@@ -1,7 +1,8 @@
 var settings = {
     "social": {
-        "twitter": "Twister1002",
+        "twitter": "Private_Panda_",
         "facebook": "",
-        "instagram": "Twister1002"
+        "instagram": "",
+        "youtube": ""
     }
 }

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette|Damion|IM+Fell+DW+Pica:400i|Lobster|Pacifico|Satisfy');
 @import "colors.scss";
 @import "mixins.scss";
+@import "icons.scss";
 
 * {
     box-sizing: border-box;
@@ -50,12 +51,44 @@ body {
     }
 
     .header {
-        background-color: $blue;
-        padding: 1em;
+        @include linear_gradient($blue, $blue, $purple);
         @include flexbox();
+        justify-content: space-between;
+        
+        > div {
+            @include flex(0 0 33%);
+        }
+
+        .social {
+            > div {
+                font-size: 1.5em;
+                align-self: center;
+                padding: .2em 0;
+
+                > span {                
+                    font-size: 1em;
+                    padding: .25em;
+
+                    &.twitter {
+                        background-color: $twitter;
+                    }
+                    &.facebook {
+                        background-color: $facebook;
+                    }
+                    &.twitch {
+                        background-color: $twitch;
+                    }
+                    &.instagram {
+                        background-color: $instagram;
+                    }
+                    &.youtube {
+                        background-color: $youtube;
+                    }               
+                }
+            }
+        }
         
         .name {
-            @include flex(1 0 auto);
             font-size: 4em;
             text-align: center;
         }
