@@ -1,3 +1,4 @@
-const {electron, ipcRenderer} = require("electron");
+const util = require("../library/js/utilities.js");
+const settings = require("../library/js/settings.js");
 
-let settings = ipcRenderer.sendSync("sync:Settings");
+

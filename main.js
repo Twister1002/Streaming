@@ -1,8 +1,8 @@
 // Define global values
-global.rootDir = __dirname;
-
 const {app, BrowserWindow, Menu, MenuItem, ipcMain} = require('electron');
 const path = require("path");
+
+global.rootDir = __dirname;
 const utilities = require("./library/js/utilities.js");
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -21,7 +21,9 @@ function createWindow () {
 	});
 
 	// and load the index.html of the app.
-	win.loadURL(utilities.LoadFile("parts/index.html"));
+    win.loadURL(utilities.LoadFile("parts/index.html"));
+    
+    win.openDevTools();
 
 	// Emitted when the window is closed.
 	win.on('closed', () => {
@@ -81,6 +83,10 @@ function createWindow () {
     }));
 
     Menu.setApplicationMenu(menu);
+
+    win.once("ready-to-show", () => {
+        win.show();
+    });
 }
 
 // This method will be called when Electron has finished
@@ -108,3 +114,22 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
+ipcMain.on("sync:app", (e, arg) => {
+    if (arg === "appPath") {
+        e.returnValue = app.getAppPath();
+    }
+    else {
+        e.returnValue = app.getPath(arg);
+    }
+});
+
+// // When a window calls this method, then reply with the correct information
+// ipcMain.on("sync:Settings", (event, arg) =>  {
+//     // Get the json file with the settings
+//     event.returnValue = JSON.parse(fs.readFileSync(settingsFile, "utf-8"));
+// });
+
+// ipcMain.on("sync:SaveSettings", (event, settings) => {
+//     // For now just save the file without verifying the integrity.
+//     fs.writeFileSync(settingsFile, JSON.stringify(settings));
+// });
