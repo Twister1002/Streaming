@@ -1,0 +1,32 @@
+{
+    "twitch": {
+        "name": "",
+        "isPartner": false,
+        "isAffiliate": false,
+        "lastCheer": {
+            "name": "",
+            "amount": ""
+        },
+        "lastSubscriber": {
+            "name": ""
+        },
+        "lastFollow": {
+            "name": ""
+        }
+    },
+    "social": {
+        "twitter": {
+            "name": ""
+        },
+        "facebook": {
+            "name": ""
+        },
+        "instagram": {
+            "name": ""
+        },
+        "youtube": {
+            "name": ""
+        }
+    },
+    "updated": 0
+}

@@ -1,109 +1,63 @@
-jQuery(document).ready(function() {
-    var twitch = (function () {
-        function twitch(name) {
-            this.name = name;
-            this.clientId = "jccqzsee2ome0ua5opwxr6rjjjj8a3";
-            this.baseUri = "https://api.twitch.tv/";
-            this.apiVersion = "kraken";
-            this.scopes = "channel_subscriptions channel_read channel_editor user_read";
-            this.token = "token";
-            this.userToken = "";
-            this.channelId = "";
+var twitch = (function () {
+    function twitch(name) {
+        this.name = name;
+        this.clientId = "jccqzsee2ome0ua5opwxr6rjjjj8a3";
+        this.baseUri = "https://api.twitch.tv/";
+        this.apiVersion = "helix";
+        this.userId = "";
+        this.broadcaster_type = null;
 
-            if (location.hash) {
-                this.LogUserIn();
-                this.LoadData();
+        if (this.userId == "") {
+            data = this.GetUser(this.name);
+            this.userId = data.id;
+            this.broadcaster_type = data.broadcaster_type;
+
+            $(".header .name").text(data.display_name);
+
+            this.Init();
+        }
+    };
+
+    twitch.prototype.Init = function() {
+        this.GetRecentFollower();
+        // this.GetRecentSubscriber();
+        // this.GetRecentCheer();
+    };
+
+    twitch.prototype.GetUser = function(nameOrId) {
+        params = isNaN(nameOrId) ? {"login": nameOrId} : {"id": nameOrId};
+        var data = null;
+
+        this.Ajax("/users", "get", params, false,
+        function(json) {
+            if (json.data.length == 1) {
+                data = json.data[0];
             }
             else {
-                this.Login();
+                console.log("Error in loading user.");
             }
-        };
-
-        twitch.prototype.LoadData = function() {
-            this.GetRecentFollower();
-            this.GetRecentSubscriber();
-            this.GetRecentCheer();
-        };
-
-        twitch.prototype.Login = function() {
-            var data = {
-                "client_id": this.clientId, 
-                "scope": this.scopes,
-                "redirect_uri": "http://localhost/overlay",
-                "response_type": this.token
-            };
-            var params = "";
-            $.each(data, function(i, e) {
-                if(params) params += "&";
-                params += i+"="+e;
-            });
-            
-            // var loginWindow = window.open(this.baseUri+this.apiVersion+"/oauth2/authorize?"+params, "_blank");
-            // $(loginWindow.location.href).on("change", function(e) {
-            //     console.log("In here!");
-            // });
-
-            $("iframe")
-            .attr("src", this.baseUri+this.apiVersion+"/oauth2/authorize?"+params )
-            .on("load", function(e) {
-                console.log(this);
-            })
-        };
-
-        twitch.prototype.LogUserIn = function() {
-            var token = "";
-            var self = this;
-            
-            hashData = location.hash.split("&");
-            $.each(hashData, function(i, e) {
-                if (e.indexOf("accessToken")) {
-                    token = e.substr(e.indexOf('=')+1);
-                    return false;
-                }
+        },
+        function(json) {
+                console.log(json);
             });
 
-            this.userToken = token;
-
-            // Now gather the information about the channel
-            $.ajax({
-                "url": this.baseUri+this.apiVersion+"/channel",
-                "type": "get",
-                "crossDomain": true,
-                "async": false,
-                "headers": this.GetHeaders(),
-                "success": function(json) {
-                    self.channelId = json._id;
-                },
-                "error": function(json) {
-                    console.log(json);
-                }
-            })
-        };
-
-        twitch.prototype.IsLoggedIn = function() {
-            if (this.userToken) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        };
+            return data;
+        }
 
         twitch.prototype.GetRecentFollower = function () {
-            $.ajax({
-                "url": this.baseUri+this.apiVersion+"/channels/"+this.channelId+"/follows",
-                "type": "get", 
-                "data": {"limit": 1},
-                "dataType": "json",
-                "crossDomain": true,
-                "headers": this.GetHeaders(),
-                "success": function(json) {
-                    $(".recents .follower dd").text(json.follows[0].user.name);
+            var self = this;
+            this.Ajax("/users/follows/", "get", { "to_id": this.userId, "first": 1 }, true,
+                function(json) {
+                    // Now get the user information about who followed.
+                    data = self.GetUser(json.data[0].from_id);
+                    
+                    $(".recents .follower dd").text(data.display_name);
                 },
-                "error": function(json) {
+                function(json) {
                     console.log(json);
+                    $(".recents .follower dd").text("N/A");
                 }
-            });
+            );
         };
 
         twitch.prototype.GetRecentSubscriber = function() {
@@ -148,7 +102,7 @@ jQuery(document).ready(function() {
             data = {};
             data["Accept"] = "application/vnd.twitchtv.v5+json";
 
-            if (this.client_id) {
+            if (this.clientId) {
                 data["Client-ID"] = this.clientId;
             }
 
@@ -168,8 +122,19 @@ jQuery(document).ready(function() {
             return codes[num];
         };
 
+        twitch.prototype.Ajax = function(url, verb, data, async, success, error) {
+            $.ajax({
+                "url": this.baseUri+this.apiVersion+url,
+                "type": verb != "" ? verb : "get", 
+                "data": data ? data : {},
+                "dataType": "json",
+                "crossDomain": true,
+                "async": async ? true : async,
+                "headers": this.GetHeaders(),
+                "success": success,
+                "error": error
+            });
+        };
+
         return twitch;
     }());
-
-    twitch = new twitch("twister1002");
-});

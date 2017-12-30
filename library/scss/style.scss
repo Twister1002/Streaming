@@ -24,34 +24,35 @@ dl {
 body {
     width: 100vw;
     height: 100vh;
-    background-color: $purple;
-    color: $white;
+    background-color: $background;
+    color: $text;
+    font-family:'Times New Roman', Times, serif;
 
-    &[data-font="Lobster"] {
-        font-family: 'Lobster', cursive;
-    }
-    &[data-font="Pacifico"] {
-        font-family: 'Pacifico', cursive;
-    }
-    &[data-font="Satisfy"] {
-        font-family: 'Satisfy', cursive;
-    }
-    &[data-font="Courgette"] {
-        font-family: 'Courgette', cursive;
-    }
-    &[data-font="Damion"] {
-        font-family: 'Damion', cursive;
-    }
-    &[data-font="IM Fell DW Pica"] {
-        font-family: 'IM Fell DW Pica', serif;
-    }
+    // &[data-font="Lobster"] {
+    //     font-family: 'Lobster', cursive;
+    // }
+    // &[data-font="Pacifico"] {
+    //     font-family: 'Pacifico', cursive;
+    // }
+    // &[data-font="Satisfy"] {
+    //     font-family: 'Satisfy', cursive;
+    // }
+    // &[data-font="Courgette"] {
+    //     font-family: 'Courgette', cursive;
+    // }
+    // &[data-font="Damion"] {
+    //     font-family: 'Damion', cursive;
+    // }
+    // &[data-font="IM Fell DW Pica"] {
+    //     font-family: 'IM Fell DW Pica', serif;
+    // }
 
     iframe {
         display: none;
     }
 
     .header {
-        @include linear_gradient($blue, $blue, $purple);
+        @include linear_gradient($blue, $purple , $background);
         @include flexbox();
         justify-content: space-between;
         
@@ -68,6 +69,7 @@ body {
                 > span {                
                     font-size: 1em;
                     padding: .25em;
+                    margin-right: .25em;
 
                     &.twitter {
                         background-color: $twitter;
@@ -127,6 +129,7 @@ body {
         width: 100%;
         bottom: 3.5em;
         @include flexbox();
+        color: $text;
         
         > div {
             font-size: 3em;
@@ -143,11 +146,11 @@ body {
     
                 dt {
                     font-weight: bold;
-                    border-bottom: 2px solid $white;
+                    border-bottom: 2px solid $border;
                     text-transform: uppercase;
                 }
                 dd {
-                    border-top: 2px solid $white;
+                    border-top: 2px solid $border;
                 }
             }
         }
