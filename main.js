@@ -3,7 +3,7 @@ const {app, BrowserWindow, Menu, MenuItem, ipcMain} = require('electron');
 const path = require("path");
 
 global.rootDir = __dirname;
-const utilities = require("./library/js/utilities.js");
+const utilities = require("./library/modules/utilities.js");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

@@ -1,4 +1,4 @@
-const util = require("../library/js/utilities.js");
-const settings = require("../library/js/settings.js");
+const util = require("../library/modules/utilities.js");
+const settings = require("../library/modules/settings.js");
 
 
