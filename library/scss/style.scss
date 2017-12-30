@@ -155,4 +155,13 @@ body {
             }
         }
     }
+
+    #popup {
+        position: absolute;
+        display: block;
+
+        &.hide {
+            display: none;
+        }
+    }
 }
