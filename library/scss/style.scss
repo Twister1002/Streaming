@@ -18,6 +18,21 @@ dl {
     }
 }
 
+#message {
+    .success {
+        background-color: $success;
+        color: $white;
+    }
+    .error { 
+        background-color: $error;
+        color: $white;
+    }
+    .warning {
+        background-color: $warning;
+        color: $white;
+    }
+}
+
 @import "header.scss";
 @import "footer.scss";
 

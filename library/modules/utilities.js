@@ -4,11 +4,6 @@ const url = require('url');
 class Utiltiies {
 
     LoadFile(file) {
-        if (path === null || url === null) {
-            console.error("Path is not defined.");
-            return;
-        }
-
         var urlPath = url.format({
             pathname: path.join(global.rootDir, file),
             protocol: 'file:',
@@ -16,6 +11,17 @@ class Utiltiies {
         });
     
         return urlPath;
+    }
+
+    SetMessage(string, classType) {
+        if (string != "") {
+            document.getElementById("message").classList.add(classType);
+            document.getElementById("message").innerText = string;
+        }
+    }
+
+    Ajax(url, verb, success, error) {
+
     }
 
 }

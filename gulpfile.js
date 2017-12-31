@@ -2,16 +2,16 @@ var
 gulp = require("gulp"),
 sass = require("gulp-sass"),
 // ts = require("gulp-typescript"),
-concat = require("gulp-concat"),
-sourcemaps = require("gulp-sourcemaps"),
+// concat = require("gulp-concat"),
+// sourcemaps = require("gulp-sourcemaps"),
 browserSync = require("browser-sync").create();
 
 gulp.task("sass", function() {
     gulp.src("library/scss/style.scss")
-    .pipe(sourcemaps.init())
+    // .pipe(sourcemaps.init())
     .pipe(sass())
     .on("error", sass.logError)
-    .pipe(sourcemaps.write())
+    // .pipe(sourcemaps.write())
     .pipe(gulp.dest("library/css"))
     .pipe(browserSync.stream({
         stream: true
