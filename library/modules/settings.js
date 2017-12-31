@@ -1,7 +1,3 @@
-const {ipcRenderer} = require("electron");
-const fs = require("fs");
-const path = require("path");
-
 class Settings {
 
     constructor() {
@@ -52,6 +48,16 @@ class Settings {
         // The fields are updated, now update the time and save the file.
         this._data.updated = (Date.now() / 1000 | 0);
         fs.writeFileSync(path.join(ipcRenderer.sendSync("sync:app", "userData"), "settings.json"), JSON.stringify(this._data));
+
+        // Now we need to acquire data and update their information as well 
+        // Twitch first
+
+        return true;
+    }
+
+    GetValue(field) {
+        var fieldArray = field.id.split("_");
+        return this._data[fieldArray[0]][fieldArray[1]];
     }
 }
 
