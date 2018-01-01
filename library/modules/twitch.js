@@ -1,83 +1,38 @@
-const axios = require("axios");
-
 class Twitch {
-    constructor(name) {
-        this.name = name;
+    constructor(twitchSettings) {
         this.clientId = "jccqzsee2ome0ua5opwxr6rjjjj8a3";
         this.baseUri = "https://api.twitch.tv/";
-        this.apiVersion = "helix";
-
-        if (this.userId == "") {
-            data = this.GetUser(this.name);
-            this.userId = data.id;
-            this.broadcaster_type = data.broadcaster_type;
-
-            $(".header .name").text(data.display_name);
-
-            this.Init();
-        }
+        this.vNew = "helix";
+        this.v5 = "kraken"
+        this.userObject = twitchSettings;
     };
 
-    Init() {
-        this.GetRecentFollower();
-        // this.GetRecentSubscriber();
-        // this.GetRecentCheer();
-    };
+    async GetUser(nameOrId) {
+        let params = isNaN(nameOrId) ? {"login": nameOrId} : {"id": nameOrId};
+        let data = await this.Ajax("/users", this.vNew, "get", params);
 
-    GetUser(nameOrId) {
-        params = isNaN(nameOrId) ? {"login": nameOrId} : {"id": nameOrId};
-        var data = null;
-
-        this.Ajax("/users", "get", params, false,
-        function(json) {
-            if (json.data.length == 1) {
-                data = json.data[0];
-            }
-            else {
-                console.log("Error in loading user.");
-            }
-        },
-        function(json) {
-            console.log(json);
-        });
-
-        return data;
+        this.userObject = data.data.data[0];
+        return this.userObject;
     }
 
-    GetRecentFollower() {
-        var self = this;
-        this.Ajax("/users/follows/", "get", { "to_id": this.userId, "first": 1 }, true,
-            function(json) {
-                // Now get the user information about who followed.
-                data = self.GetUser(json.data[0].from_id);
-                
-                $(".recents .follower dd").text(data.display_name);
-            },
-            function(json) {
-                console.log(json);
-                $(".recents .follower dd").text("N/A");
-            }
-        );
+    async GetStream() {
+        let data = await this.Ajax("/streams", this.vNew, "get", {"user_id": this.userObject.id });
+
+        return data.data.data[0];
+    }
+
+    async GetRecentFollower() {
+        let data = await this.Ajax("/users/follows/", this.vNew, "get", { "to_id": this.userObject.id, "first": 1 });
+
+        return data.data.data[0];
     };
 
-    GetRecentSubscriber() {
-        var self = this;
-        $.ajax({
-            "url": this.baseUri+this.apiVersion+"/channels/"+this.channelId+"/subscriptions",
-            "type": "get", 
-            "data": {"limit": 1},
-            "dataType": "json",
-            "crossDomain": true,
-            "headers": this.GetHeaders(),
-            "success": function(json) {
-                console.log(json);
-                $(".recents .sub dd").text(json.subscriptions[0].user.name);
-            },
-            "error": function(json) {
-                console.log(json);
-                $(".recents .sub dd").text(self.Error(json.status));
-            }
-        });
+    async GetRecentSubscriber() {
+        // let data = await this.Ajax("/channels/"+this.userObject.id+"/subscriptions", this.v5, "get", { "limit": 1 });
+
+        // return data.data.data[0];
+
+        console.error("GetRecentSubscriber is not supported.");
     };
 
     GetRecentCheer() {
@@ -99,7 +54,7 @@ class Twitch {
     };
 
     GetHeaders() {
-        data = {};
+        var data = {};
         data["Accept"] = "application/vnd.twitchtv.v5+json";
 
         if (this.clientId) {
@@ -122,24 +77,13 @@ class Twitch {
         return codes[num];
     };
 
-    Ajax(url, verb, data, async, success, error) {
-        axios({
-            "url": this.baseUri + this.apiVersion + url,
+    Ajax(url, api, verb, data) {
+        return axios({
+            "url" : this.baseUri + api + url,
             "method": verb != "" ? verb : "get", 
-            "data": data ? data : {},
-            "head": this.GetHeaders(),
+            "params": data ? data : {},
+            "headers": this.GetHeaders()
         });
-        // $.ajax({
-        //     "url": this.baseUri+this.apiVersion+url,
-        //     "type": verb != "" ? verb : "get", 
-        //     "data": data ? data : {},
-        //     "dataType": "json",
-        //     "crossDomain": true,
-        //     "async": async ? true : async,
-        //     "headers": this.GetHeaders(),
-        //     "success": success,
-        //     "error": error
-        // });
     };
 }
 

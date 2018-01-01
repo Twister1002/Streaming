@@ -1,6 +1,8 @@
 {
     "twitch": {
         "name": "",
+        "id": "",
+        "channel_id": "",
         "isPartner": false,
         "isAffiliate": false,
         "lastCheer": {
@@ -14,19 +16,17 @@
             "name": ""
         }
     },
-    "social": {
-        "twitter": {
-            "name": ""
-        },
-        "facebook": {
-            "name": ""
-        },
-        "instagram": {
-            "name": ""
-        },
-        "youtube": {
-            "name": ""
-        }
+    "twitter": {
+        "name": ""
+    },
+    "facebook": {
+        "name": ""
+    },
+    "instagram": {
+        "name": ""
+    },
+    "youtube": {
+        "name": ""
     },
     "updated": 0
 }

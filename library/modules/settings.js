@@ -39,25 +39,49 @@ class Settings {
         return html;
     }
     
-    Update(data) {
-        data.forEach((e, i) => {
-            var fieldArray = e.id.split("_");
-            this._data[fieldArray[0]][fieldArray[1]] = e.value;
-        });
-
+    _Update() {
         // The fields are updated, now update the time and save the file.
         this._data.updated = (Date.now() / 1000 | 0);
         fs.writeFileSync(path.join(ipcRenderer.sendSync("sync:app", "userData"), "settings.json"), JSON.stringify(this._data));
-
-        // Now we need to acquire data and update their information as well 
-        // Twitch first
-
         return true;
     }
 
+    UpdateField(type, key, value) {
+        this._data[type][key] = value;
+        return this._Update();
+    }
+
+    UpdateSettings(data) {
+        data.forEach((e, i) => {
+            let fieldArray = e.id.split("_");
+            this._data[fieldArray[0]][fieldArray[1]] = e.value;
+        });
+
+        return this._Update();
+    }
+
+    async UpdateTwitchInfo() {
+        let userInfo = await twitch.GetUser(this._data.twitch.name);
+        let streamData = await twitch.GetStream();
+        let lastFollow = await twitch.GetRecentFollower();
+        let lastSub = await twitch.GetRecentSubscriber();
+
+        this._data.twitch.isAffiliate = userInfo.broadcaster_type == "affiliate";
+        this._data.twitch.isPartner = userInfo.broadcaster_type == "partner";
+        this._data.twitch.channel_id = streamData.id;
+        this._data.twitch.name = userInfo.login;
+        this._data.twitch.id = userInfo.id;
+
+        this._Update();
+    }
+
     GetValue(field) {
-        var fieldArray = field.id.split("_");
+        let fieldArray = field.id.split("_");
         return this._data[fieldArray[0]][fieldArray[1]];
+    }
+
+    GetFieldValue(type, field) {
+        return this._data[type][field];
     }
 }
 
