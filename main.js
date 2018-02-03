@@ -1,6 +1,7 @@
 // Define global values
 const {app, BrowserWindow, Menu, MenuItem, ipcMain} = require('electron');
 const path = require("path");
+// const sass = require("gulp-sass");
 
 global.rootDir = __dirname;
 const utilities = require("./library/modules/utilities.js");
@@ -18,12 +19,12 @@ function createWindow () {
 		height: 800,
 		minWidth: 450,
 		minHeight: 450
-	});
-
+    });
+    
 	// and load the index.html of the app.
     win.loadURL(utilities.LoadFile("parts/index.html"));
     
-    win.openDevTools();
+    // win.openDevTools();
 
 	// Emitted when the window is closed.
 	win.on('closed', () => {
@@ -64,19 +65,19 @@ function createWindow () {
         ]
     }));
     menu.append(new MenuItem({
-        "label": "Settings",
+        "label": "Pages",
         "submenu": [
             {
-                "label": "Twitch Info",
-                "accelerator": "CmdOrCtrl+T",
+                "label": "Home",
                 "click": () => {
-                    win.loadURL(utilities.LoadFile("parts/settings.html"));
+                    win.loadURL(utilities.LoadFile("parts/index.html"));
                 }
             },
             {
-                "label": "Social Media",
+                "label": "Settings",
+                "accelerator": "CmdOrCtrl+T",
                 "click": () => {
-                    console.log("Open Social Media");
+                    win.loadURL(utilities.LoadFile("parts/settings.html"));
                 }
             }
         ]
