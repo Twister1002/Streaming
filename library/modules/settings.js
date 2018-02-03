@@ -12,12 +12,12 @@ class Settings {
         }
 
         // Verify that the settings file exists. If not, create it.
-        // if (!fs.existsSync(this._file)) {
-        //     // Load default settings
-        //     let defaultSettings = JSON.parse(fs.readFileSync("settings-default.json", "utf-8"));
-        //     fs.writeFileSync(path.join(ipcRenderer.sendSync("sync:app", "userData"), "settings.json"), JSON.stringify(defaultSettings));
-        //     this._data = JSON.parse(fs.readFileSync(this._file, "utf-8"));
-        // }
+        if (!fs.existsSync(this._file)) {
+            // Load default settings
+            let defaultSettings = JSON.parse(fs.readFileSync("./library/settings-default.json", "utf-8"));
+            fs.writeFileSync(path.join(ipcRenderer.sendSync("sync:app", "userData"), "settings.json"), JSON.stringify(defaultSettings));
+            this._data = JSON.parse(fs.readFileSync(this._file, "utf-8"));
+        }
 
         if (fs.existsSync(this._file)) {
             this._data = JSON.parse(fs.readFileSync(this._file, "utf-8"));

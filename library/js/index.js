@@ -9,20 +9,20 @@ const twitch = require("../library/modules/twitch.js");
 
 // Load the Information saved from the user
 (function() {
-    let titleSettings = settings.GetType("title");
+    let labelSettings = settings.GetType("labels");
     let layoutSettings = settings.GetType("layout");
 
-    for (let setting in titleSettings) {
+    for (let setting in labelSettings) {
         let settingField = document.querySelector(".title_"+setting)
 
         if (settingField) {
             if (setting.includes("_file")) {
-                let fileData = fs.readFile(titleSettings[setting], "utf-8", (err, data) => {
+                let fileData = fs.readFile(labelSettings[setting], "utf-8", (err, data) => {
                     settingField.textContent = data;
                 });
             }
             else {
-                settingField.textContent = titleSettings[setting];
+                settingField.textContent = labelSettings[setting];
             }
         }
     }

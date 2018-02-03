@@ -85,6 +85,7 @@ function createWindow () {
 
     Menu.setApplicationMenu(menu);
 
+    win.setAutoHideMenuBar(true);
     win.once("ready-to-show", () => {
         win.show();
     });

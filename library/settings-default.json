@@ -1,10 +1,13 @@
 {
     "layout": {
-        "background_color": "#000000",
-        "text_color": "#FFFFFF",
-        "follower_text": "Latest Follower",
+        "background-color": "#000000",
+        "color": "#FFFFFF",
+        "follow_border-color": "#FFFFFF"
+    },
+    "labels": {
+        "follower_text": "Newest Follower",
         "subscriber_text": "Newest Subscriber",
-        "donater_text": "Lastest Donator",
+        "donation_text": "Lastest Donation",
         "cheer_text": "Latest Cheer"
     },
     "twitch": {
