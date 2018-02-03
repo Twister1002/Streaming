@@ -1,4 +1,12 @@
 {
+    "layout": {
+        "background_color": "#000000",
+        "text_color": "#FFFFFF",
+        "follower_text": "Latest Follower",
+        "subscriber_text": "Newest Subscriber",
+        "donater_text": "Lastest Donator",
+        "cheer_text": "Latest Cheer"
+    },
     "twitch": {
         "name": "",
         "id": "",

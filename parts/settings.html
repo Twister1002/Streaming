@@ -2,9 +2,59 @@
     <head>
         <link rel="stylesheet" type="text/css" href="../library/css/style.css">
     </head>
-    <body>
+    <body class="settings">
         <div id="message"></div>
         <form>
+            <div class="settings layout">
+                <h2>Layout Settings</h2>
+                <div class="field">
+                    <label for="layout_background-color">Background Color</label>
+                    <input type="text" id="layout_background-color">
+                </div>
+                <div class="field">
+                    <label for="layout_border-color">Border Color</label>
+                    <input type="text" id="layout_follow_border-color">
+                </div>
+                <div class="field">
+                    <label for="layout_color">Text Color</label>
+                    <input type="text" id="layout_color">
+                </div>
+            </div>
+            <div class="settings labels">
+                <h2>Labels</h2>
+                <div class="field">
+                    <label for="title_follower_text">Follower Text</label>
+                    <input type="text" id="title_follower_text">
+                </div>
+                <div class="field">
+                    <label for="title_follower_text_file">Follower File</label>
+                    <input type="text" id="title_follower_file" class="file_opener" readonly>
+                </div>
+                <div class="field">
+                    <label for="title_subscriber_text">Subscriber Text</label>
+                    <input type="text" id="title_subscriber_text">
+                </div>
+                <div class="field">
+                    <label for="title_subscriber_file">Subscriber File</label>
+                    <input type="text" id="title_subscriber_file" class="file_opener" readonly>
+                </div>
+                <div class="field">
+                    <label for="title_donation_text">Donation Text</label>
+                    <input type="text" id="title_donation_text">
+                </div>
+                <div class="field">
+                    <label for="title_donation_file">Donation File</label>
+                    <input type="text" id="title_donation_file" class="file_opener" readonly>
+                </div>
+                <div class="field">
+                    <label for="title_cheer_text">Cheer Text</label>
+                    <input type="text" id="title_cheer_text">
+                </div>
+                <div class="field">
+                    <label for="title_cheer_file">Cheer File</label>
+                    <input type="text" id="title_cheer_file" class="file_opener" readonly>
+                </div>
+            </div>
             <div class="settings twitch">
                 <h2>Twitch Settings</h2>
                 <div class="field">
@@ -15,23 +65,26 @@
             <div class="settings social-media">
                 <h2>Social Media</h2>
                 <div class="field">
-                        <label for="twitter_name">Twitter</label>
-                        <input type="text" id="twitter_name" name="twitter_name">
-                    </div>
+                    <label for="twitter_name">Twitter</label>
+                    <input type="text" id="twitter_name" name="twitter_name">
+                </div>
                 <div class="field">
-                        <label for="instagram_name">Instagram</label>
-                        <input type="text" id="instagram_name" name="instagram_name">
-                    </div>
+                    <label for="instagram_name">Instagram</label>
+                    <input type="text" id="instagram_name" name="instagram_name">
+                </div>
                 <div class="field">
-                        <label for="youtube_name">Youtube</label>
-                        <input type="text" id="youtube_name" name="youtube_name">
-                    </div>
+                    <label for="youtube_name">Youtube</label>
+                    <input type="text" id="youtube_name" name="youtube_name">
+                </div>
                 <div class="field">
-                        <label for="facebook_name">Facebook</label>
-                        <input type="text" id="facebook_name" name="facebook_name">
-                    </div>
+                    <label for="facebook_name">Facebook</label>
+                    <input type="text" id="facebook_name" name="facebook_name">
+                </div>
             </div>
-            <button type="button" id="update_settings_button">Save</button>
+            <div class="settings"></div>
+            <div>
+                <button type="button" id="update_settings_button">Save</button>
+            </div>
         </form>
         <script type="text/javascript" src="../library/js/settings.js"></script>
         <script id="__bs_script__">//<![CDATA[
