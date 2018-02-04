@@ -39,18 +39,29 @@ dl {
     right: 0;
     
     ul {
+        position: relative;
         padding: 0;
         margin: 0;
         list-style-type: none;
 
         li {
-            font-size: 1.5em;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            
             &:before {
                 margin-right: .5em;
                 padding: .5em;
             }
-            
+
             padding: .5em;
+            font-size: 1.5em;
+            transition: all .75s ease;
+            transform: translateX(100%);
+
+            &.display {
+                transform: translateX(0%);
+            }
         }
 
         .twitter {

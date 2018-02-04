@@ -62,15 +62,23 @@ dl {
   bottom: 0;
   right: 0; }
   .social ul {
+    position: relative;
     padding: 0;
     margin: 0;
     list-style-type: none; }
     .social ul li {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: .5em;
       font-size: 1.5em;
-      padding: .5em; }
+      transition: all .75s ease;
+      transform: translateX(100%); }
       .social ul li:before {
         margin-right: .5em;
         padding: .5em; }
+      .social ul li.display {
+        transform: translateX(0%); }
     .social ul .twitter:before {
       background-color: #1DA1F2; }
     .social ul .facebook:before {
