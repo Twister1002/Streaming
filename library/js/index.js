@@ -6,6 +6,7 @@ const fs = require("fs");
 const util = require("../library/modules/utilities.js");
 const settings = require("../library/modules/settings.js");
 const twitch = require("../library/modules/twitch.js");
+const social = require("../library/modules/social.js");
 const socialElement = document.querySelector(".social ul");
 
 // Load the Information saved from the user
@@ -54,18 +55,6 @@ const socialElement = document.querySelector(".social ul");
         socialElement.appendChild(element);
     }
     
-    SocialDisplay();
+    social.SetElements(socialElement);
+    social.Start();
 })();
-
-function SocialDisplay() {
-    setInterval(function() {
-        let element = socialElement.children[0];
-        if (element.classList.contains("display")) {
-            element.classList.remove("display");
-        }
-        else {
-            element.classList.add("display");
-        }
-    }, 2000);
-    
-}

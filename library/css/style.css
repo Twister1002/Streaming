@@ -62,13 +62,17 @@ dl {
   bottom: 0;
   right: 0; }
   .social ul {
+    position: relative;
     padding: 0;
     margin: 0;
     list-style-type: none; }
     .social ul li {
+      position: absolute;
+      bottom: 0;
+      right: 0;
       padding: .5em;
       font-size: 1.5em;
-      transition: all 1s ease;
+      transition: all .75s ease;
       transform: translateX(100%); }
       .social ul li:before {
         margin-right: .5em;
