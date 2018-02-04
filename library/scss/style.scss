@@ -33,6 +33,85 @@ dl {
     }
 }
 
+.social {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+
+        li {
+            font-size: 1.5em;
+            &:before {
+                margin-right: .5em;
+                padding: .5em;
+            }
+            
+            padding: .5em;
+        }
+
+        .twitter {
+            &:before {
+                background-color: $twitter;
+            }
+        }
+        .facebook {
+            &:before {
+                background-color: $facebook;
+            }
+        }
+        .twitch {
+            &:before {
+                background-color: $twitch;
+            }
+        }
+        .instagram {
+            &:before {
+                background-color: $instagram;
+            }
+        }
+        .youtube {
+            &:before {
+                background-color: $youtube;
+            }
+        }
+    }
+}
+
+.recents {
+    position: absolute;
+    width: 100%;
+    bottom: 3.5em;
+    @include flexbox();
+    
+    > div {
+        font-size: 3em;
+        @include flex(1 1 auto);
+        margin: 0 .25em;
+
+        dl {
+            > * {
+                display: block;
+                padding: .5em;
+                text-align: center;
+                font-size: 1.25em;
+            }
+
+            dt {
+                font-weight: bold;
+                border-bottom: 2px solid $border;
+                text-transform: uppercase;
+            }
+            dd {
+                border-top: 2px solid $border;
+            }
+        }
+    }
+}
+
 @import "header.scss";
 @import "footer.scss";
 @import "settings.scss";
@@ -42,6 +121,7 @@ body {
     height: 100vh;
     background-color: $background;
     font-family:'Times New Roman', Times, serif;
+    overflow: hidden;
 
     // &[data-font="Lobster"] {
     //     font-family: 'Lobster', cursive;
@@ -61,54 +141,6 @@ body {
     // &[data-font="IM Fell DW Pica"] {
     //     font-family: 'IM Fell DW Pica', serif;
     // }
-
-    iframe {
-        display: none;
-    }
-
-    .header {
-        @include flexbox();
-        justify-content: space-between;
-        
-        > div {
-            @include flex(1 1 33%);
-        }
-
-        .social {
-            > div {
-                font-size: 1.25em;
-                align-self: center;
-                padding: .2em 0;
-
-                > span {                
-                    font-size: 1em;
-                    padding: .25em;
-                    margin-right: .25em;
-
-                    &.twitter {
-                        background-color: $twitter;
-                    }
-                    &.facebook {
-                        background-color: $facebook;
-                    }
-                    &.twitch {
-                        background-color: $twitch;
-                    }
-                    &.instagram {
-                        background-color: $instagram;
-                    }
-                    &.youtube {
-                        background-color: $youtube;
-                    }               
-                }
-            }
-        }
-        
-        .name {
-            font-size: 2em;
-            text-align: center;
-        }
-    }
 
     .content {
         position: relative;
@@ -135,46 +167,6 @@ body {
             // background-color: $purple;
             display: inline-block;
             width: 20%;
-        }
-    }
-
-    .recents {
-        position: absolute;
-        width: 100%;
-        bottom: 3.5em;
-        @include flexbox();
-        
-        > div {
-            font-size: 3em;
-            @include flex(1 1 auto);
-            margin: 0 .25em;
-
-            dl {
-                > * {
-                    display: block;
-                    padding: .5em;
-                    text-align: center;
-                    font-size: 1.25em;
-                }
-    
-                dt {
-                    font-weight: bold;
-                    border-bottom: 2px solid $border;
-                    text-transform: uppercase;
-                }
-                dd {
-                    border-top: 2px solid $border;
-                }
-            }
-        }
-    }
-
-    #popup {
-        position: absolute;
-        display: block;
-
-        &.hide {
-            display: none;
         }
     }
 }

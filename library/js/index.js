@@ -6,11 +6,13 @@ const fs = require("fs");
 const util = require("../library/modules/utilities.js");
 const settings = require("../library/modules/settings.js");
 const twitch = require("../library/modules/twitch.js");
+const socialElement = document.querySelector(".social ul");
 
 // Load the Information saved from the user
 (function() {
     let labelSettings = settings.GetType("labels");
     let layoutSettings = settings.GetType("layout");
+    let socialSettings = settings.GetType("social");
 
     for (let setting in labelSettings) {
         let settingField = document.querySelector(".title_"+setting)
@@ -40,5 +42,15 @@ const twitch = require("../library/modules/twitch.js");
                 document.querySelector("body").style[setting] = layoutSettings[setting];
                 break;
         }
+    }
+
+    for (let social in socialSettings) {
+        let socialSplit = social.split("_");
+        let element = document.createElement("li");
+        let text = document.createTextNode(socialSettings[social]);
+
+        element.classList.add(socialSplit[0].toLowerCase(), "icon-"+socialSplit[0].toLowerCase());
+        element.appendChild(text);
+        socialElement.appendChild(element);
     }
 })();
