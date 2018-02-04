@@ -66,11 +66,15 @@ dl {
     margin: 0;
     list-style-type: none; }
     .social ul li {
+      padding: .5em;
       font-size: 1.5em;
-      padding: .5em; }
+      transition: all 1s ease;
+      transform: translateX(100%); }
       .social ul li:before {
         margin-right: .5em;
         padding: .5em; }
+      .social ul li.display {
+        transform: translateX(0%); }
     .social ul .twitter:before {
       background-color: #1DA1F2; }
     .social ul .facebook:before {

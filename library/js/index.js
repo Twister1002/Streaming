@@ -53,4 +53,19 @@ const socialElement = document.querySelector(".social ul");
         element.appendChild(text);
         socialElement.appendChild(element);
     }
+    
+    SocialDisplay();
 })();
+
+function SocialDisplay() {
+    setInterval(function() {
+        let element = socialElement.children[0];
+        if (element.classList.contains("display")) {
+            element.classList.remove("display");
+        }
+        else {
+            element.classList.add("display");
+        }
+    }, 2000);
+    
+}

@@ -44,13 +44,19 @@ dl {
         list-style-type: none;
 
         li {
-            font-size: 1.5em;
             &:before {
                 margin-right: .5em;
                 padding: .5em;
             }
-            
+
             padding: .5em;
+            font-size: 1.5em;
+            transition: all 1s ease;
+            transform: translateX(100%);
+
+            &.display {
+                transform: translateX(0%);
+            }
         }
 
         .twitter {
