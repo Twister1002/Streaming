@@ -1,0 +1,43 @@
+{
+    "layout": {
+        "background-color": "#000000",
+        "color": "#FFFFFF",
+        "follow_border-color": "#FFFFFF"
+    },
+    "labels": {
+        "follower_text": "Newest Follower",
+        "subscriber_text": "Newest Subscriber",
+        "donation_text": "Lastest Donation",
+        "cheer_text": "Latest Cheer"
+    },
+    "twitch": {
+        "name": "",
+        "id": "",
+        "channel_id": "",
+        "isPartner": false,
+        "isAffiliate": false,
+        "lastCheer": {
+            "name": "",
+            "amount": ""
+        },
+        "lastSubscriber": {
+            "name": ""
+        },
+        "lastFollow": {
+            "name": ""
+        }
+    },
+    "twitter": {
+        "name": ""
+    },
+    "facebook": {
+        "name": ""
+    },
+    "instagram": {
+        "name": ""
+    },
+    "youtube": {
+        "name": ""
+    },
+    "updated": 0
+}

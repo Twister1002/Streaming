@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css?family=Courgette|Damion|IM+Fell+DW+Pica:400i|Lobster|Pacifico|Satisfy");
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon.eot?y40ikr");
+  src: url("../fonts/icomoon.eot?y40ikr#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?y40ikr") format("truetype"), url("../fonts/icomoon.woff?y40ikr") format("woff"), url("../fonts/icomoon.svg?y40ikr#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-facebook:before {
+  content: "\ea90"; }
+
+.icon-instagram:before {
+  content: "\ea92"; }
+
+.icon-twitter:before {
+  content: "\ea96"; }
+
+.icon-youtube:before {
+  content: "\ea9d"; }
+
+.icon-twitch:before {
+  content: "\ea9f"; }
+
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+  margin: 0;
+  padding: 0; }
+
+dl {
+  margin: 0; }
+  dl dd {
+    margin: 0; }
+
+#message .success {
+  background-color: #1C8716;
+  color: #FFFFFF; }
+
+#message .error {
+  background-color: #cc181e;
+  color: #FFFFFF; }
+
+#message .warning {
+  background-color: #A7831C;
+  color: #FFFFFF; }
+
+.social {
+  position: absolute;
+  bottom: 0;
+  right: 0; }
+  .social ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none; }
+    .social ul li {
+      font-size: 1.5em;
+      padding: .5em; }
+      .social ul li:before {
+        margin-right: .5em;
+        padding: .5em; }
+    .social ul .twitter:before {
+      background-color: #1DA1F2; }
+    .social ul .facebook:before {
+      background-color: #3B5998; }
+    .social ul .twitch:before {
+      background-color: #6441a5; }
+    .social ul .instagram:before {
+      background-color: #C13584; }
+    .social ul .youtube:before {
+      background-color: #cc181e; }
+
+.recents {
+  position: absolute;
+  width: 100%;
+  bottom: 3.5em;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+  .recents > div {
+    font-size: 3em;
+    -webkit-box-flex: 1 1 auto;
+    -moz-box-flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    margin: 0 .25em; }
+    .recents > div dl > * {
+      display: block;
+      padding: .5em;
+      text-align: center;
+      font-size: 1.25em; }
+    .recents > div dl dt {
+      font-weight: bold;
+      border-bottom: 2px solid #2C001A;
+      text-transform: uppercase; }
+    .recents > div dl dd {
+      border-top: 2px solid #2C001A; }
+
+body.settings {
+  color: #FFFFFF;
+  width: 100%; }
+  body.settings form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; }
+    body.settings form > div {
+      flex: 1 0 auto;
+      padding: 1em;
+      width: 100%; }
+    body.settings form > div.settings {
+      flex: 1 0 auto;
+      width: 50%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: flex-start; }
+      body.settings form > div.settings h2 {
+        flex: 1 0 100%;
+        width: 100%;
+        font-size: 1.5em;
+        padding: .25em 0; }
+      body.settings form > div.settings .field {
+        flex: 1 0 auto;
+        width: 50%;
+        padding: .5em 0; }
+        body.settings form > div.settings .field > label {
+          display: block;
+          width: 100%; }
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  font-family: 'Times New Roman', Times, serif;
+  overflow: hidden; }
+  body .content {
+    position: relative;
+    height: 90vh;
+    width: 100vw;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; }
+    body .content > div {
+      height: 90%;
+      align-self: center;
+      margin: 0 1em; }
+    body .content .video {
+      -webkit-box-flex: 0 0 calc(80% - 4em);
+      -moz-box-flex: 0 0 calc(80% - 4em);
+      -webkit-flex: 0 0 calc(80% - 4em);
+      -ms-flex: 0 0 calc(80% - 4em);
+      flex: 0 0 calc(80% - 4em);
+      width: 80%; }
+    body .content .right {
+      -webkit-box-flex: 0 0 20%;
+      -moz-box-flex: 0 0 20%;
+      -webkit-flex: 0 0 20%;
+      -ms-flex: 0 0 20%;
+      flex: 0 0 20%;
+      display: inline-block;
+      width: 20%; }

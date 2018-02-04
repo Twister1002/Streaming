@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../library/css/style.css">
+    </head>
+    <body class="settings">
+        <div id="message"></div>
+        <form>
+            <div class="settings layout">
+                <h2>Layout Settings</h2>
+                <div class="field">
+                    <label for="layout_background-color">Background Color</label>
+                    <input type="text" id="layout_background-color">
+                </div>
+                <div class="field">
+                    <label for="layout_border-color">Border Color</label>
+                    <input type="text" id="layout_follow_border-color">
+                </div>
+                <div class="field">
+                    <label for="layout_color">Text Color</label>
+                    <input type="text" id="layout_color">
+                </div>
+            </div>
+            <div class="settings labels">
+                <h2>Labels</h2>
+                <div class="field">
+                    <label for="labels_follower_text">Follower Text</label>
+                    <input type="text" id="labels_follower_text">
+                </div>
+                <div class="field">
+                    <label for="labels_follower_text_file">Follower File</label>
+                    <input type="text" id="labels_follower_file" class="file_opener" readonly>
+                </div>
+                <div class="field">
+                    <label for="labels_subscriber_text">Subscriber Text</label>
+                    <input type="text" id="labels_subscriber_text">
+                </div>
+                <div class="field">
+                    <label for="labels_subscriber_file">Subscriber File</label>
+                    <input type="text" id="labels_subscriber_file" class="file_opener" readonly>
+                </div>
+                <div class="field">
+                    <label for="labels_donation_text">Donation Text</label>
+                    <input type="text" id="labels_donation_text">
+                </div>
+                <div class="field">
+                    <label for="labels_donation_file">Donation File</label>
+                    <input type="text" id="labels_donation_file" class="file_opener" readonly>
+                </div>
+                <div class="field">
+                    <label for="labels_cheer_text">Cheer Text</label>
+                    <input type="text" id="labels_cheer_text">
+                </div>
+                <div class="field">
+                    <label for="labels_cheer_file">Cheer File</label>
+                    <input type="text" id="labels_cheer_file" class="file_opener" readonly>
+                </div>
+            </div>
+            <div class="settings twitch">
+                <h2>Twitch Settings</h2>
+                <div class="field">
+                    <label for="twitch_name">Username</label>
+                    <input type="text" id="twitch_name" name="twitch_name">
+                </div>
+            </div>
+            <div class="settings social-media">
+                <h2>Social Media</h2>
+                <div class="field">
+                    <label for="social_twitter_name">Twitter</label>
+                    <input type="text" id="social_twitter_name" name="social_twitter_name">
+                </div>
+                <div class="field">
+                    <label for="social_instagram_name">Instagram</label>
+                    <input type="text" id="social_instagram_name" name="social_instagram_name">
+                </div>
+                <div class="field">
+                    <label for="social_youtube_name">Youtube</label>
+                    <input type="text" id="social_youtube_name" name="social_youtube_name">
+                </div>
+                <div class="field">
+                    <label for="social_facebook_name">Facebook</label>
+                    <input type="text" id="social_facebook_name" name="social_facebook_name">
+                </div>
+            </div>
+            <div class="settings"></div>
+            <div>
+                <button type="button" id="update_settings_button">Save</button>
+            </div>
+        </form>
+        <script type="text/javascript" src="../library/js/settings.js"></script>
+        <script id="__bs_script__">//<![CDATA[
+        document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.13'><\/script>".replace("HOST", location.hostname));
+    //]]></script>
+    </body>
+</html>
