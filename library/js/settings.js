@@ -59,6 +59,3 @@ function DisplayLayoutSettings() {
         document.querySelector("body").style[setting] = layoutSettings[setting];
     }
 }
-
-
-

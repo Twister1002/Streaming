@@ -57,6 +57,60 @@ dl {
   background-color: #A7831C;
   color: #FFFFFF; }
 
+.social {
+  position: absolute;
+  bottom: 0;
+  right: 0; }
+  .social ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none; }
+    .social ul li {
+      font-size: 1.5em;
+      padding: .5em; }
+      .social ul li:before {
+        margin-right: .5em;
+        padding: .5em; }
+    .social ul .twitter:before {
+      background-color: #1DA1F2; }
+    .social ul .facebook:before {
+      background-color: #3B5998; }
+    .social ul .twitch:before {
+      background-color: #6441a5; }
+    .social ul .instagram:before {
+      background-color: #C13584; }
+    .social ul .youtube:before {
+      background-color: #cc181e; }
+
+.recents {
+  position: absolute;
+  width: 100%;
+  bottom: 3.5em;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+  .recents > div {
+    font-size: 3em;
+    -webkit-box-flex: 1 1 auto;
+    -moz-box-flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    margin: 0 .25em; }
+    .recents > div dl > * {
+      display: block;
+      padding: .5em;
+      text-align: center;
+      font-size: 1.25em; }
+    .recents > div dl dt {
+      font-weight: bold;
+      border-bottom: 2px solid #2C001A;
+      text-transform: uppercase; }
+    .recents > div dl dd {
+      border-top: 2px solid #2C001A; }
+
 body.settings {
   color: #FFFFFF;
   width: 100%; }
@@ -92,43 +146,8 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: #000000;
-  font-family: 'Times New Roman', Times, serif; }
-  body iframe {
-    display: none; }
-  body .header {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    justify-content: space-between; }
-    body .header > div {
-      -webkit-box-flex: 1 1 33%;
-      -moz-box-flex: 1 1 33%;
-      -webkit-flex: 1 1 33%;
-      -ms-flex: 1 1 33%;
-      flex: 1 1 33%; }
-    body .header .social > div {
-      font-size: 1.25em;
-      align-self: center;
-      padding: .2em 0; }
-      body .header .social > div > span {
-        font-size: 1em;
-        padding: .25em;
-        margin-right: .25em; }
-        body .header .social > div > span.twitter {
-          background-color: #1DA1F2; }
-        body .header .social > div > span.facebook {
-          background-color: #3B5998; }
-        body .header .social > div > span.twitch {
-          background-color: #6441a5; }
-        body .header .social > div > span.instagram {
-          background-color: #C13584; }
-        body .header .social > div > span.youtube {
-          background-color: #cc181e; }
-    body .header .name {
-      font-size: 2em;
-      text-align: center; }
+  font-family: 'Times New Roman', Times, serif;
+  overflow: hidden; }
   body .content {
     position: relative;
     height: 90vh;
@@ -159,36 +178,3 @@ body {
       flex: 0 0 20%;
       display: inline-block;
       width: 20%; }
-  body .recents {
-    position: absolute;
-    width: 100%;
-    bottom: 3.5em;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex; }
-    body .recents > div {
-      font-size: 3em;
-      -webkit-box-flex: 1 1 auto;
-      -moz-box-flex: 1 1 auto;
-      -webkit-flex: 1 1 auto;
-      -ms-flex: 1 1 auto;
-      flex: 1 1 auto;
-      margin: 0 .25em; }
-      body .recents > div dl > * {
-        display: block;
-        padding: .5em;
-        text-align: center;
-        font-size: 1.25em; }
-      body .recents > div dl dt {
-        font-weight: bold;
-        border-bottom: 2px solid #2C001A;
-        text-transform: uppercase; }
-      body .recents > div dl dd {
-        border-top: 2px solid #2C001A; }
-  body #popup {
-    position: absolute;
-    display: block; }
-    body #popup.hide {
-      display: none; }
