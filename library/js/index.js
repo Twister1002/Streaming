@@ -6,6 +6,7 @@ const fs = require("fs");
 const util = require("../library/modules/utilities.js");
 const settings = require("../library/modules/settings.js");
 const twitch = require("../library/modules/twitch.js");
+const social = require("../library/modules/social.js");
 const socialElement = document.querySelector(".social ul");
 
 // Load the Information saved from the user
@@ -53,4 +54,7 @@ const socialElement = document.querySelector(".social ul");
         element.appendChild(text);
         socialElement.appendChild(element);
     }
+    
+    social.SetElements(socialElement);
+    social.Start();
 })();
