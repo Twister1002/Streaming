@@ -20,8 +20,18 @@ const socialElement = document.querySelector(".social ul");
 
         if (settingField) {
             if (setting.includes("_file")) {
-                let fileData = fs.readFile(labelSettings[setting], "utf-8", (err, data) => {
-                    settingField.textContent = data;
+                ReadFile(labelSettings[setting], settingField);
+
+                // Create the watcher
+                let fileWatcher = fs.watch(labelSettings[setting], {"encoding": "utf-8"}, (eventType, fileName) => {
+                    switch (eventType) {
+                        case "change":
+                            ReadFile(labelSettings[setting], settingField);
+                            break;
+                        default:
+                            console.log("Unknown event type "+eventType);
+                            break;
+                    }
                 });
             }
             else {
@@ -58,3 +68,9 @@ const socialElement = document.querySelector(".social ul");
     social.SetElements(socialElement);
     social.Start();
 })();
+
+function ReadFile(filePath, elementToUpdate) {
+    let fileData = fs.readFile(filePath, (ex, data) => {
+        elementToUpdate.textContent = data;
+    });
+}
