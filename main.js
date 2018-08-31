@@ -6,6 +6,7 @@ const path = require("path");
 
 global.rootDir = __dirname;
 const utilities = require("./library/modules/utilities.js");
+const settings = require("./library/modules/settings.js");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -18,8 +19,7 @@ function createWindow () {
 	win = new BrowserWindow({
 		width: 1024, 
 		height: 800,
-		minWidth: 450,
-		minHeight: 450
+        resizable: false
     });
     
 	// and load the index.html of the app.
@@ -34,6 +34,7 @@ function createWindow () {
 		// when you should delete the corresponding element.
 		win = null
     });
+
     menu.append(new MenuItem({
         "label": "File",
         "submenu": [
@@ -126,6 +127,16 @@ ipcMain.on("sync:app", (e, arg) => {
     }
     else {
         e.returnValue = app.getPath(arg);
+    }
+});
+
+ipcMain.on("resolution:change", (e, arg) => {
+    if (win !== null) {
+        dimentions = arg.split("x");
+        win.setBounds({
+            "width": dimentions[0],
+            "height": dimentions[1]
+        });
     }
 });
 

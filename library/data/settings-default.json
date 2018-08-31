@@ -4,6 +4,10 @@
         "color": "#FFFFFF",
         "follow_border-color": "#FFFFFF"
     },
+    "design" : {
+        "layout": -1,
+        "resolution": ""   
+    },
     "labels": {
         "follower_text": "Newest Follower",
         "subscriber_text": "Newest Subscriber",

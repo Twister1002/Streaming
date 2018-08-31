@@ -40,6 +40,9 @@ submitButton.addEventListener("click", (e) => {
     try {
         if (settings.UpdateSettings(fields)) {
             DisplayLayoutSettings();
+            
+            // Set the window size.
+            ipcRenderer.on("resolution:change", settings.GetFieldValue("design", "resolution"));
         }
 
         settings.UpdateTwitchInfo();

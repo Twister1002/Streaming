@@ -112,7 +112,13 @@ class Settings {
     }
 
     GetFieldValue(type, field) {
-        return this._data[type][field];
+        if (this._data.hasOwnProperty(type)) {
+            if (this._data[type].hasOwnProperty(field)) {
+                return this._data[type][field];
+            }
+        }
+        
+        return null;
     }
 
     GetType(type) {

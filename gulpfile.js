@@ -7,12 +7,12 @@ sass = require("gulp-sass"),
 browserSync = require("browser-sync").create();
 
 gulp.task("sass", function() {
-    gulp.src("library/scss/style.scss")
+    gulp.src("src/scss/style.scss")
     // .pipe(sourcemaps.init())
     .pipe(sass())
     .on("error", sass.logError)
     // .pipe(sourcemaps.write())
-    .pipe(gulp.dest("library/css"))
+    .pipe(gulp.dest("src/css"))
     .pipe(browserSync.stream({
         stream: true
     }));
@@ -37,7 +37,7 @@ gulp.task("browserSync", function() {
 });
 
 gulp.task("watch", ["browserSync"], function() {
-    gulp.watch("library/scss/*.scss", ["sass"]);
+    gulp.watch("src/scss/*.scss", ["sass"]);
     // gulp.watch("library/ts/*.ts", ["ts"]);
 });
 
