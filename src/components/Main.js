@@ -1,19 +1,26 @@
 import React, { Component } from "react";
 
-class Main extends Component {
+import Streaming from "./Stream";
+import Settings from "./Settings";
+
+export default class Main extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            isStreaming: window.location.search.includes("stream")
+        }
     }
 
     render() {
         return (
             <div className="main">
-                This will be the component area to change settings. <br/>
-                Default load
+                {this.state.isStreaming ? (
+                    <Streaming />
+                ) : (
+                    <Settings />
+                )}
             </div>
         )
     }
 }
-
-export default Main;

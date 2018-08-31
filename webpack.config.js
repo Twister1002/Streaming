@@ -30,26 +30,17 @@ const ESLintLoader = {
     }
 };
   
-// const CSSLoader = {
-//     test: /\.css$/,
-//     use: extractCSS.extract([
-//         // MiniCssExtractPlugin.loader,
-//         // "css-hot-loader",
-//         // "style-loader",
-//         "css-loader",
-//         {
-//             loader: "postcss-loader",
-//             options: {
-//                 config: {
-//                     path: __dirname + "/postcss.config.js"
-//                 }
-//             }
-//         }
-//     ])
-// }
+const SCSSLoader = {
+    test: /\.(sc|sa)ss$/,
+    use: [
+        "style-loader",
+        "css-loader",
+        "sass-loader"
+    ]
+}
 
 const ImageLoader = {
-    test: /\.(png|svg|jpg|gif)$/,
+    test: /\.(png|jpg|gif)$/,
     use: [
         {
             loader: "file-loader"
@@ -57,21 +48,34 @@ const ImageLoader = {
     ]
 }
 
+const FontLoader = {
+    test: /\.(ttf|woff(2)?|svg|eot)$/,
+    use: [
+        {
+            loader: "file-loader",
+            options: {
+                name: "[name].[ext]",
+                outputPath: "fonts"
+            }
+        }
+    ]
+}
+
 module.exports = env => {
     return {
-        entry: ["babel-polyfill", "./src/index.js"],
+        entry: "./src/index.js",
         output: {
             filename: "bundle.js",
             path: path.resolve(__dirname, "bin"),
-            // publicPath: "dist/"
         },
         devtool: "source-map",
         module: {
             rules: [
-                // CSSLoader,
+                SCSSLoader,
                 JSLoader,
                 // ESLintLoader,
-                ImageLoader
+                ImageLoader,
+                FontLoader
             ]
         },
         plugins: [
