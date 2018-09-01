@@ -1,12 +1,8 @@
 // Define global values
 const {app, BrowserWindow, Menu, MenuItem, ipcMain} = require('electron');
+const fs = require("fs");
 const autoUpdater = require("electron-updater").autoUpdater
 const path = require("path");
-// const sass = require("gulp-sass");
-
-global.rootDir = __dirname;
-const utilities = require("./library/modules/utilities.js");
-const settings = require("./library/modules/settings.js");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -18,14 +14,13 @@ function createWindow () {
 	// Create the browser window.
 	win = new BrowserWindow({
 		width: 1024, 
-		height: 800,
-        resizable: false
+		height: 800
     });
+
+    // and load the index.html of the app.
+    win.loadURL(path.join(__dirname, "bin/index.html"));
     
-	// and load the index.html of the app.
-    win.loadURL(utilities.LoadFile("parts/index.html"));
-    
-    // win.openDevTools();
+    win.openDevTools();
 
 	// Emitted when the window is closed.
 	win.on('closed', () => {
@@ -66,28 +61,10 @@ function createWindow () {
             }
         ]
     }));
-    menu.append(new MenuItem({
-        "label": "Pages",
-        "submenu": [
-            {
-                "label": "Home",
-                "click": () => {
-                    win.loadURL(utilities.LoadFile("parts/index.html"));
-                }
-            },
-            {
-                "label": "Settings",
-                "accelerator": "CmdOrCtrl+T",
-                "click": () => {
-                    win.loadURL(utilities.LoadFile("parts/settings.html"));
-                }
-            }
-        ]
-    }));
 
     Menu.setApplicationMenu(menu);
 
-    win.setAutoHideMenuBar(true);
+    // win.setAutoHideMenuBar(true);
     win.once("ready-to-show", () => {
         win.show();
     });
@@ -120,6 +97,26 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+function ReadJSONFile(file) {
+    try {
+        return JSON.parse(fs.readFileSync(file), "utf-8");
+    }
+    catch(err) {
+        console.log(`Error reading json file.`, err);
+        return {};
+    }
+}
+
+ipcMain.on("getSettingsData", (e) => {
+    e.returnValue = ReadJSONFile(path.join(app.getPath("userData"), "settings.json"));
+});
+
+ipcMain.on("saveSettingData", (e, data) => {
+    fs.writeFileSync(path.join(app.getPath("userData"), "settings.json"), JSON.stringify(data));
+
+    e.returnValue = false;
+})
 
 ipcMain.on("sync:app", (e, arg) => {
     if (arg === "appPath") {
