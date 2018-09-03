@@ -21,7 +21,9 @@ export default class ColorSettings extends Component {
     }
 
     componentDidMount() {
-        this.setState(this.props.data);
+        this.setState({
+            settings: this.props.data
+        });
     }
 
     onValueChange(color) {
