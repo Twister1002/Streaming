@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import SaveButton from "./SaveButton";
+
 export default class TwitchSettings extends Component {
     constructor(props) {
         super(props);
@@ -30,7 +32,7 @@ export default class TwitchSettings extends Component {
         return (
             <div id="twitch-settings">
                 Twitch
-                <button onClick={this.onSave}>Save</button>
+                <SaveButton onSettingSave={this.onSave} />
             </div>
         )
     }

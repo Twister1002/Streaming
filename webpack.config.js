@@ -1,11 +1,8 @@
-const path = require("path"),
+const 
+devMode = process.env.NODE_ENV !== 'production',
+path = require("path"),
 CleanWebpackPlugin = require("clean-webpack-plugin"),
 HtmlWebpackPlugin = require("html-webpack-plugin");
-// MiniCssExtractPlugin = require("mini-css-extract-plugin"),
-// ExtractTextPlugin = require("extract-text-webpack-plugin");
-
-const devMode = process.env.NODE_ENV !== 'production'
-// const extractCSS = new ExtractTextPlugin("style.bundle.css");
 
 const JSLoader = {
     test: /\.js$/,
@@ -63,10 +60,13 @@ const FontLoader = {
 
 module.exports = env => {
     return {
-        entry: ["./src/index.js"],
+        entry: {
+            "app": "./src/app/index.js",
+            "stream": "./src/stream/index.js"
+        },
         output: {
-            filename: "bundle.js",
-            path: path.resolve(__dirname, "bin"),
+            filename: "[name].bundle.js",
+            path: path.resolve(__dirname, "build")
         },
         devtool: "source-map",
         module: {
@@ -80,10 +80,18 @@ module.exports = env => {
         },
         plugins: [
             // extractCSS,
-            new CleanWebpackPlugin(["bin"]),
+            new CleanWebpackPlugin(["build"]),
             new HtmlWebpackPlugin({
                 title: `Streaming`,
-                template: "src/index.html"
+                chunks: ["app"],
+                template: "./src/app/index.html",
+                filename: "./app.index.html"
+            }),
+            new HtmlWebpackPlugin({
+                title: `Streaming`,
+                chunks: ["stream"],
+                template: "./src/stream/index.html",
+                filename: "./stream.index.html"
             })
         ]
     }

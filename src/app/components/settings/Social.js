@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import SaveButton from "./SaveButton";
+
 export default class SocialSettings extends Component {
     constructor(props) {
         super(props);
@@ -74,7 +76,7 @@ export default class SocialSettings extends Component {
                         />
                     </div>
                 </div>
-                <button onClick={this.onSave}>Save</button>
+                <SaveButton onSettingSave={this.onSave} />
             </div>
         )
     }

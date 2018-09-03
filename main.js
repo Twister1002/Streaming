@@ -4,6 +4,14 @@ const fs = require("fs");
 const autoUpdater = require("electron-updater").autoUpdater
 const path = require("path");
 
+// Server stuff
+const express = require("express");
+const expressApp = express();
+expressApp.get("/stream", (req, res) => {
+    res.sendFile(path.join(__dirname, "build/stream.index.html"));
+});
+expressApp.listen(9010, () => console.log("Express listening on port 9000"));
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
@@ -18,7 +26,7 @@ function createWindow () {
     });
 
     // and load the index.html of the app.
-    win.loadURL(path.join(__dirname, "bin/index.html"));
+    win.loadURL(path.join(__dirname, "build/app.index.html"));
     
     win.openDevTools();
 

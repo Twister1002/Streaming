@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import SaveButton from "./SaveButton";
+
 export default class LabelSettings extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +20,7 @@ export default class LabelSettings extends Component {
 
     componentDidMount() {
         this.setState({
-            labels: [...this.props.data]
+            labels: this.props.data
         });
     }
 
@@ -56,7 +58,14 @@ export default class LabelSettings extends Component {
             const labels = [...this.state.labels];
             labels.push({...this.state.newLabel});
 
-            this.setState({ labels });
+            this.setState({ 
+                newLabel: {
+                    type: "file",
+                    label: "",
+                    value: ""
+                },
+                labels 
+            });
         }
     }
 
@@ -99,7 +108,7 @@ export default class LabelSettings extends Component {
                     })
                 }
 
-                <button onClick={this.onSave}>Save</button>
+                <SaveButton onSettingSave={this.onSave} />
             </div>
         )
     }

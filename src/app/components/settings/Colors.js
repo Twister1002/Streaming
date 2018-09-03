@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { ChromePicker as ColorPicker } from "react-color";
+
+import SaveButton from "./SaveButton";
 
 export default class ColorSettings extends Component {
     constructor(props) {
@@ -56,6 +57,7 @@ export default class ColorSettings extends Component {
     render() {
         return (
             <div id="color-settings">
+            <h1>Colors / Layout Options</h1>
                 {
                     Object.entries(this.state.settings).map(([setting, value]) => {
                         return (
@@ -80,7 +82,7 @@ export default class ColorSettings extends Component {
                         )
                     })
                 }
-                <button onClick={this.onSave}>Save</button>
+                <SaveButton onSettingSave={this.onSave} />
             </div>
         )
     }
