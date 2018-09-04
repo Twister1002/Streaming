@@ -7,7 +7,8 @@ const path = require("path");
 // Server stuff
 const express = require("express");
 const expressApp = express();
-expressApp.get("/stream", (req, res) => {
+expressApp.use(express.static(path.join(__dirname, "build")));
+expressApp.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "build/stream.index.html"));
 });
 expressApp.listen(9010, () => console.log("Express listening on port 9000"));

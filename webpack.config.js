@@ -2,7 +2,8 @@ const
 devMode = process.env.NODE_ENV !== 'production',
 path = require("path"),
 CleanWebpackPlugin = require("clean-webpack-plugin"),
-HtmlWebpackPlugin = require("html-webpack-plugin");
+HtmlWebpackPlugin = require("html-webpack-plugin"),
+ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const JSLoader = {
     test: /\.js$/,
@@ -28,12 +29,14 @@ const ESLintLoader = {
 };
   
 const SCSSLoader = {
-    test: /\.(sc|sa)ss$/,
-    use: [
-        "style-loader",
-        "css-loader",
-        "sass-loader"
-    ]
+    test: /\.s[ca]ss$/,
+    use: ExtractTextPlugin.extract({
+        fallback: "style-loader",
+        use: [
+            "css-loader",
+            "sass-loader"
+        ]
+    })
 }
 
 const ImageLoader = {
@@ -79,18 +82,18 @@ module.exports = env => {
             ]
         },
         plugins: [
-            // extractCSS,
+            new ExtractTextPlugin("[name].css"),
             new CleanWebpackPlugin(["build"]),
             new HtmlWebpackPlugin({
                 title: `Streaming`,
                 chunks: ["app"],
-                template: "./src/app/index.html",
+                template: "./src/index.html",
                 filename: "./app.index.html"
             }),
             new HtmlWebpackPlugin({
                 title: `Streaming`,
                 chunks: ["stream"],
-                template: "./src/stream/index.html",
+                template: "./src/index.html",
                 filename: "./stream.index.html"
             })
         ]
